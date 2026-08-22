@@ -479,12 +479,6 @@ function App() {
 
                                     }
 
-                                    onOpenSidebar={
-
-                                        () => setIsSidebarOpen(true)
-
-                                    }
-
                                 />
 
                             </Suspense>

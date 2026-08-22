@@ -14,7 +14,7 @@ import type { Game } from "../../types/Game";
 import MessageComponent from "./Message";
 import Icon from "../UI/Icon";
 
-import { BookOpen, ChevronDown, Menu, Plus, Send, Square, Mic, MicOff, Volume2, VolumeX } from "lucide-react";
+import { BookOpen, ChevronDown, Plus, Send, Square, Mic, MicOff, Volume2, VolumeX } from "lucide-react";
 
 import { useChat } from "../../hooks/useChat";
 import { useSpeechRecognition } from "../../hooks/useSpeechRecognition";
@@ -32,17 +32,13 @@ interface Props {
 
     ) => void;
 
-    onOpenSidebar: () => void;
-
 }
 
 function Chat({
 
     game,
 
-    onOpenManual,
-
-    onOpenSidebar
+    onOpenManual
 
 }: Props) {
 
@@ -426,11 +422,33 @@ function Chat({
             const rect =
                 button.getBoundingClientRect();
 
+            // Mismo límite de seguridad que ya usa
+            // usePositionedMenu para el resto de paneles de la
+            // cabecera — sin esto, un botón que no sea el más a
+            // la derecha (como este) puede calcular un "right"
+            // demasiado grande y empujar el panel fuera de la
+            // pantalla por la izquierda en anchos estrechos.
+            const MAX_PANEL_WIDTH = 320;
+
+            const SAFETY_MARGIN = 12;
+
+            const naturalRight =
+                window.innerWidth - rect.right;
+
+            const maxSafeRight =
+                Math.max(
+
+                    SAFETY_MARGIN,
+
+                    window.innerWidth - MAX_PANEL_WIDTH - SAFETY_MARGIN
+
+                );
+
             setManualMenuPosition({
 
                 top: rect.bottom + 8,
 
-                right: window.innerWidth - rect.right
+                right: Math.min(naturalRight, maxSafeRight)
 
             });
 
@@ -460,26 +478,6 @@ function Chat({
         <section className="chat">
 
             <div className="chat-topbar">
-
-                <button
-
-                    className="chat-menu-button"
-
-                    onClick={onOpenSidebar}
-
-                    aria-label="Ver lista de juegos"
-
-                >
-
-                    <Icon
-
-                        icon={Menu}
-
-                        size={20}
-
-                    />
-
-                </button>
 
                 <div className="chat-title">
 
