@@ -134,6 +134,17 @@
 
     align-items: center;
 
+    /*
+     * Sin esto, cuando el texto se oculta en pantallas
+     * estrechas (queda solo el icono dentro de un botón de
+     * ancho fijo), el icono se quedaba pegado al principio del
+     * botón en vez de centrado en el espacio disponible — el
+     * valor por defecto de justify-content es flex-start, no
+     * center. Con icono + texto (pantallas anchas) esto no
+     * cambia nada, porque no sobra espacio que repartir.
+     */
+    justify-content: center;
+
     gap: 8px;
 
     height: 38px;
