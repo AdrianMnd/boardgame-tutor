@@ -1026,6 +1026,61 @@ function Sidebar({
 
             </div>
 
+            {/*
+             * Requisito obligatorio de los términos de uso de la
+             * API de BoardGameGeek para aplicaciones públicas que
+             * usan sus datos (ver docs/IMPORT.md del backend) —
+             * no es una elección de diseño, es una condición de
+             * licencia. Debe enlazar de vuelta a BGG y mostrarse
+             * con un tamaño donde el texto del logo siga siendo
+             * legible.
+             *
+             * TODO: falta el archivo de imagen real en
+             * public/bgg-powered-by.png — mientras tanto, este
+             * enlace de texto cumple la obligación de forma
+             * mínima, pero debe sustituirse por el logo en cuanto
+             * esté disponible.
+             */}
+            <a
+
+                href="https://boardgamegeek.com"
+
+                target="_blank"
+
+                rel="noopener noreferrer"
+
+                className="sidebar-bgg-attribution"
+
+            >
+
+                <img
+
+                    src="/bgg-powered-by.png"
+
+                    alt="Powered by BoardGameGeek"
+
+                    onError={
+
+                        event => {
+
+                            // Si el archivo aún no existe, se
+                            // oculta la imagen rota y se apoya
+                            // en el texto de al lado — nunca se
+                            // deja de cumplir el requisito de
+                            // enlazar a BGG, aunque falte el
+                            // logo en sí.
+                            event.currentTarget.style.display = "none";
+
+                        }
+
+                    }
+
+                />
+
+                <span>Powered by BoardGameGeek</span>
+
+            </a>
+
         </aside>
 
         </>

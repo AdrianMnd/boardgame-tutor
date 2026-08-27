@@ -798,3 +798,46 @@
     }
 
 }
+
+.sidebar-bgg-attribution {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    padding: 10px 16px;
+
+    border-top: 1px solid var(--color-border-light);
+
+    color: var(--color-text-light);
+
+    font-size: .72rem;
+
+    text-decoration: none;
+
+}
+
+.sidebar-bgg-attribution:hover {
+
+    color: var(--color-text-secondary);
+
+}
+
+.sidebar-bgg-attribution img {
+
+    /*
+     * BGG exige que el texto del propio logo se mantenga
+     * legible — 20px de alto es un tamaño mínimo razonable para
+     * eso en la práctica, no un valor arbitrario.
+     */
+    height: 20px;
+
+    width: auto;
+
+}
